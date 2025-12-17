@@ -149,10 +149,7 @@ pipeline {
                     echo 'failed_log.txt found – creating downloadable zip artifact'
 
                     // ✅ THIS BOTH ZIPS *AND* ARCHIVES
-                    zip zipFile: 'failed_log.zip',
-                        archive: true,
-                        dir: '.',
-                        glob: 'failed_log.txt'
+                    zip my_failed_log.zip : 'failed_log.txt', archive: true
 
                     currentBuild.description = '❌ Tests failed – failed_log.zip available'
                 } else {
