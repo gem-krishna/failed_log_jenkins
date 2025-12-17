@@ -5,8 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Build the project using Gradle wrapper
-                sh './gradlew build'
+                sh '''
+                chmod +x gradlew
+                ./gradlew build
+                '''
             }
         }
         stage('Test') {
