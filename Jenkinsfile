@@ -148,9 +148,9 @@ pipeline {
                 if (fileExists('failed_log.txt')) {
                     echo 'failed_log.txt found – creating downloadable zip artifact'
 
-                    // ✅ THIS BOTH ZIPS *AND* ARCHIVES
-                    zip my_failed_log.zip : 'failed_log.txt', archive: true
+                    zip my_failed_log.zip failed_log.txt
 
+                    archiveArtifacts artifacts: 'my_failed_log.zip', allowEmptyArchive: false
                     currentBuild.description = '❌ Tests failed – failed_log.zip available'
                 } else {
                     echo 'failed_log.txt NOT found'
