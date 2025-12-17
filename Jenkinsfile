@@ -14,7 +14,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                echo 'Running tests (expected to fail)...'
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     sh './gradlew test'
                 }
@@ -28,20 +28,18 @@ pipeline {
 
             script {
                 if (fileExists('failed_log.txt')) {
-                    // Jenkins-native zip (NO system zip required)
-                    zip zipFile: 'failed_log.zip', archive: false, dir: '.', glob: 'failed_log.txt'
 
-                    // Archive the zip so it is downloadable
+                    // Jenkins-native zip (NO system zip needed)
+                    zip zipFile: 'failed_log.zip',
+                        archive: false,
+                        dir: '.',
+                        glob: 'failed_log.txt'
+
+                    // Archive so it is downloadable
                     archiveArtifacts artifacts: 'failed_log.zip', allowEmptyArchive: true
 
-                    // Optional: show content inline
-                    def logContent = readFile('failed_log.txt')
-                    summary {
-                        text("""
-### Failed Log
-<pre>${logContent}</pre>
-""")
-                    }
+                    // Set build description (visible on build page)
+                    currentBuild.description = '❌ Tests failed – failed_log.zip available'
                 } else {
                     echo 'failed_log.txt not found'
                 }
