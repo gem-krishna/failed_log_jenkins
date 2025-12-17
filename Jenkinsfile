@@ -21,6 +21,18 @@ pipeline {
                 always {
                     // Archive failed_log.txt if it exists
                     archiveArtifacts artifacts: 'failed_log.txt', allowEmptyArchive: true
+                    // Display failed_log.txt content in build summary if it exists
+                    script {
+                        if (fileExists('failed_log.txt')) {
+                            def logContent = readFile('failed_log.txt')
+                            summary {
+                                text("""
+### Failed Log
+<pre>${logContent}</pre>
+""")
+                            }
+                        }
+                    }
                 }
             }
         }
