@@ -18,6 +18,3 @@ dependencies {
 
 test {
 }
-
-targetCompatibility = '21'
-sourceCompatibility = '21'
