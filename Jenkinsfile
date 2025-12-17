@@ -128,6 +128,18 @@ pipeline {
                 '''
             }
         }
+        stage('Check zip tools') {
+            steps {
+                sh '''
+                    echo "Checking zip:"
+                    command -v zip || echo "zip NOT found"
+
+                    echo "Checking tar:"
+                    command -v tar || echo "tar NOT found"
+                '''
+            }
+        }
+
 
         stage('Test') {
             steps {
