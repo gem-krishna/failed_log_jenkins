@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +20,11 @@ public class GoogleSearchSteps {
 
     @Given("I am on the Google search page")
     public void i_am_on_the_google_search_page() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
     }
 
@@ -59,8 +64,14 @@ public class GoogleSearchSteps {
     }
 
     private void logFailure(String message) {
-        try (FileWriter fw = new FileWriter("failed_log.txt", true)) {
-            fw.write(message + System.lineSeparator());
+        try {
+            java.io.File dir = new java.io.File("target");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            try (FileWriter fw = new FileWriter(new java.io.File(dir, "failed_log.txt"), true)) {
+                fw.write(message + System.lineSeparator());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
