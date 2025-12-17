@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Google Search" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-12-17T18:38:59.031Z" hostname="GEMGN-220042" time="6.386">
+  <properties/>
+  <testcase name="Search for something on Google" classname="Google Search" time="6.386">
+    <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at org.junit.Assert.assertFalse(Assert.java:75)
+	at org.example.stepdefs.GoogleSearchSteps.the_page_title_should_contain(GoogleSearchSteps.java:42)
+	at ✽.the page title should contain &quot;Selenium&quot;(file:///C:/Users/Krishna.Agrawal/jenkins_failed_log_download/failed_log/src/test/resources/features/google_search.feature:5)
+</failure>
+  </testcase>
+  <system-out><![CDATA[
+Scenario: Search for something on Google        ?[90m# src/test/resources/features/google_search.feature:2?[0m
+  ?[32mGiven ?[0m?[32mI am on the Google search page?[0m          ?[90m# org.example.stepdefs.GoogleSearchSteps.i_am_on_the_google_search_page()?[0m
+  ?[32mWhen ?[0m?[32mI search for ?[0m?[32m?[1m"Selenium"?[0m                  ?[90m# org.example.stepdefs.GoogleSearchSteps.i_search_for(java.lang.String)?[0m
+  ?[31mThen ?[0m?[31mthe page title should contain ?[0m?[31m?[1m"Selenium"?[0m ?[90m# org.example.stepdefs.GoogleSearchSteps.the_page_title_should_contain(java.lang.String)?[0m
+      ?[31mjava.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at org.junit.Assert.assertFalse(Assert.java:75)
+	at org.example.stepdefs.GoogleSearchSteps.the_page_title_should_contain(GoogleSearchSteps.java:42)
+	at ✽.the page title should contain "Selenium"(file:///C:/Users/Krishna.Agrawal/jenkins_failed_log_download/failed_log/src/test/resources/features/google_search.feature:5)
+?[0m
+]]></system-out>
+  <system-err><![CDATA[Dec 18, 2025 12:09:01 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 143
+Dec 18, 2025 12:09:01 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 143.0.7499.42. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+</testsuite>
