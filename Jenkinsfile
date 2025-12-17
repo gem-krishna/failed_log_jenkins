@@ -159,7 +159,7 @@ pipeline {
             script {
                 if (fileExists('failed_log.txt')) {
                     echo 'failed_log.txt found – creating downloadable zip artifact'
-                    ssh 'tar -czf failed_log.tar.gz failed_log.txt'
+                    sh 'tar -czf failed_log.tar.gz failed_log.txt'
 
                     archiveArtifacts artifacts: 'failed_log.tar.gz', fingerprint: true
                     currentBuild.description = '❌ Tests failed – failed_log.zip available'
